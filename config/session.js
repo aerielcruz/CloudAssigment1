@@ -9,7 +9,6 @@ function createSessionStore() {
     // const MONGODB_URI = 'mongodb+srv://jeckmontano:kvnFhz0wG80U2laY@cluster0.pekijnr.mongodb.net/';
     // Azure - const MONGODB_URI = 'mongodb+srv://jeckmontano:aiscloudapplication@cloudapplicationais.64i13zm.mongodb.net/?retryWrites=true&w=majority&appName=CloudApplicationAIS';
     const MONGODB_URI = 'mongodb+srv://jeckmontano:cloudApplicationAIS@cloudapplicationais.ftzcy2s.mongodb.net/?retryWrites=true&w=majority&appName=CloudApplicationAIS';
-                         mongodb+srv://jeckmontano:cloudapplicatonAWS@clusteraws.w34mn8o.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAWS
     // const MONGODB_URI = process.env.MONGODB_URI;
     // const MONGODB_URI = 'mongodb://localhost:27017';
     console.log('---- starting db -----');
