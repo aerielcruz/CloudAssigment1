@@ -1,20 +1,21 @@
 const { MongoClient } = require('mongodb');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 async function deploySchemaAndCreateAdmin() {
-  const uri = "your_mongodb_atlas_connection_string"; // Replace with your Atlas URI
+  //const uri = "your_mongodb_atlas_connection_string"; // Replace with your Atlas URI
+  const uri = "mongodb+srv://jeckmontano:cloudApplicationAIS@cloudapplicationais.ftzcy2s.mongodb.net/?retryWrites=true&w=majority&appName=CloudApplicationAIS"
   const client = new MongoClient(uri);
 
   try {
     await client.connect();
-    const db = client.db("your_database_name");
+    const db = client.db("online-shop");
     const collectionName = "users";
 
     // Define JSON schema for the users collection including new fields
-    const schema = {
+    const schema = {  
       $jsonSchema: {
         bsonType: "object",
-        required: ["email", "password", "role", "name", "address", "isAdmin"],
+        required: ["email", "password", "name", "address", "isAdmin"],
         properties: {
           email: {
             bsonType: "string",
@@ -24,10 +25,6 @@ async function deploySchemaAndCreateAdmin() {
           password: {
             bsonType: "string",
             description: "must be a string and is required"
-          },
-          role: {
-            enum: ["admin", "user"],
-            description: "can only be 'admin' or 'user' and is required"
           },
           name: {
             bsonType: "string",
@@ -90,7 +87,6 @@ async function deploySchemaAndCreateAdmin() {
     const adminUser = {
       email: 'cloudAdmin2@yahoo.com',
       password: hashedPassword,
-      role: 'admin2',
       name: 'adminUser2',
       address: {
         street: 'admin street',
