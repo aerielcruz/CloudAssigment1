@@ -11,7 +11,7 @@ const csrf = require('csurf');
 const expressSession = require('express-session');
 
 // import session handler 
-const createrSessionConfig = require('./config/session');
+const createSessionConfig = require('./config/session');
 // require import database object 
 const db = require('./data/database');
 
@@ -51,11 +51,12 @@ app.use(express.urlencoded({ extended: false }));
 // return the middleware function for json data
 app.use(express.json());
 
-// activate express
-const sessionConfig = createrSessionConfig();
-
-// initialize the session
-app.use(expressSession(sessionConfig));
+(async () => {
+    // activate express
+    const sessionConfig = await createSessionConfig();
+    // initialize the session
+    app.use(expressSession(sessionConfig));
+})();
 
 // activate csrf as middleware - should be before a request reach the route
 app.use(csrf());

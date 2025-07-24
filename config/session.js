@@ -35,13 +35,13 @@ async function createSessionStore() {
     return store;
 }
 
-function createSessionConfig() {
+async function createSessionConfig() {
     return {
         // secret: 'super-secret',
         secret: process.env.SESSION_SECRET || 'super-secret',
         resave: false,
         saveUninitialized: false,
-        store: createSessionStore(),
+        store: await createSessionStore(),
         cookie: {
             maxAge: 2 * 24 * 60 * 60 * 1000 // 2days
         }
