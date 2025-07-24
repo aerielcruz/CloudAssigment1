@@ -1,16 +1,18 @@
 const mongoDbStore = require('connect-mongodb-session');
 const expressSession = require('express-session');
+const { getSecretValue } = require('../util/get-secret-value');
 // require('dotenv').config(); // For local development only, to load .env file
 
 // const MONGODB_URI = process.env.MONGODB_URI;
-function createSessionStore() {
+async function createSessionStore() {
     const MongoDBStore = mongoDbStore(expressSession);
 
     // const MONGODB_URI = 'mongodb+srv://jeckmontano:kvnFhz0wG80U2laY@cluster0.pekijnr.mongodb.net/';
     // Azure - const MONGODB_URI = 'mongodb+srv://jeckmontano:aiscloudapplication@cloudapplicationais.64i13zm.mongodb.net/?retryWrites=true&w=majority&appName=CloudApplicationAIS';
-    const MONGODB_URI = 'mongodb+srv://jeckmontano:cloudApplicationAIS@cloudapplicationais.ftzcy2s.mongodb.net/?retryWrites=true&w=majority&appName=CloudApplicationAIS';
+    // const MONGODB_URI = 'mongodb+srv://jeckmontano:cloudApplicationAIS@cloudapplicationais.ftzcy2s.mongodb.net/?retryWrites=true&w=majority&appName=CloudApplicationAIS';
     // const MONGODB_URI = process.env.MONGODB_URI;
     // const MONGODB_URI = 'mongodb://localhost:27017';
+    const MONGODB_URI = await getSecretValue("mongodb-uri-secret").MONGODB_URI
     console.log('---- starting db -----');
     console.log('connecting:' + MONGODB_URI);
     console.log('----------');
