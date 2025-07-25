@@ -1,6 +1,6 @@
 const mongoDbStore = require('connect-mongodb-session');
 const expressSession = require('express-session');
-const { getSecretValue } = require('../util/get-secret-value');
+const { getParameterStore } = require('../util/get-parameter-store');
 // require('dotenv').config(); // For local development only, to load .env file
 
 // const MONGODB_URI = process.env.MONGODB_URI;
@@ -12,7 +12,7 @@ async function createSessionStore() {
     // const MONGODB_URI = 'mongodb+srv://jeckmontano:cloudApplicationAIS@cloudapplicationais.ftzcy2s.mongodb.net/?retryWrites=true&w=majority&appName=CloudApplicationAIS';
     // const MONGODB_URI = process.env.MONGODB_URI;
     // const MONGODB_URI = 'mongodb://localhost:27017';
-    const MONGODB_URI = await getSecretValue("mongodb-uri-secret").MONGODB_URI
+    const MONGODB_URI = await getParameterStore("mongodb-uri")
     console.log('---- starting db -----');
     console.log('connecting:' + MONGODB_URI);
     console.log('----------');
