@@ -11,7 +11,7 @@ const getParameterStore = async (name) => {
       WithDecryption: true,
     });
     const response = await client.send(command);
-    return response?.Parameter;
+    return response?.Parameter?.Value;
   } catch (error) {
     throw error;
   }
